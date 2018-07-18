@@ -1,8 +1,0 @@
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.csproj.CoreCompileInputs.cache
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.AssemblyInfoInputs.cache
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.AssemblyInfo.cs
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\bin\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.deps.json
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\bin\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.dll
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\bin\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.pdb
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.dll
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.pdb

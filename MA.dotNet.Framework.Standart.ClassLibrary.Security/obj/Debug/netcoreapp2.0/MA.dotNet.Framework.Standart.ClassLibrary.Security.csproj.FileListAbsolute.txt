@@ -1,9 +1,0 @@
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\bin\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.deps.json
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\bin\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.dll
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\bin\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.pdb
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.csprojAssemblyReference.cache
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.csproj.CoreCompileInputs.cache
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.AssemblyInfoInputs.cache
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.AssemblyInfo.cs
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.dll
-C:\Users\MUHAMMED-PC\source\repos\MA.dotNET.Framework\MA.dotNet.Framework.Standart.ClassLibrary.Security\obj\Debug\netcoreapp2.0\MA.dotNet.Framework.Standart.ClassLibrary.Security.pdb
