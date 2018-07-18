@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MA.dotNet.Framework.Web.HTML.ParentSelector</title>
+</head>
+<body>
+    <style>
+        .first-div-text--red {
+            color: red;
+        }
+    </style>
+    <div id="first-div" onclick="this.setAttribute('test', 'test')">Click and Change Attribute</div>
+    <div id="first-div-text">FIRST TEXT</div>
+    <!--
+        <search>            : Find CSS, TYPE => CSS
+        <elem>              : Changed elem, TYPE => CSS
+        <add-class>         : Elem new class, TYPE => STRING
+        -->
+    <ma-parent-selector search="#first-div[test='test']" elem="#first-div-text" add-class="first-div-text--red"></ma-parent-selector>
+
+    <hr />
+    <!-------------------------------------------------->
+    <style>
+        .second-div-text--blue {
+            background-color:darkblue;
+            color:white;
+        }
+    </style>
+    <div id="second-div">Hover On Me</div>
+    <div id="second-div-text">TEXT</div>
+    <!--
+        <event>             : Event Name, TYPE => STRING, Parameters -> hover, click, keypress
+        <search>            : Find CSS, TYPE => CSS
+        <elem>              : Changed elem, TYPE => CSS
+        <add-class>         : Elem new class, TYPE => STRING
+        -->
+    <ma-parent-selector event="hover" search="#second-div" elem="#second-div-text" add-class="second-div-text--blue"></ma-parent-selector>
+
+    <script src="/Scripts/parent-selector-ma.js"></script>
+</body>
+</html>
