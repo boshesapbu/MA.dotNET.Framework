@@ -1,4 +1,21 @@
-﻿
+﻿/* OVERRIDES BEGIN */
+Array.prototype.indexOf || (Array.prototype.indexOf = function (d, e) {
+    var a;
+    if (null == this) throw new TypeError('"this" is null or not defined');
+    var c = Object(this),
+        b = c.length >>> 0;
+    if (0 === b) return -1;
+    a = +e || 0;
+    Infinity === Math.abs(a) && (a = 0);
+    if (a >= b) return -1;
+    for (a = Math.max(0 <= a ? a : b - Math.abs(a), 0); a < b;) {
+        if (a in c && c[a] === d) return a;
+        a++
+    }
+    return -1
+});
+/* OVERRIDES END */
+
 var observeDOMForParentSelector = (function () {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
@@ -21,13 +38,87 @@ var observeDOMForParentSelector = (function () {
 })();
 
 var waitProcessForParentSelector = false;
-observeDOMForParentSelector(document.body, function (m) {
+var selectorsWithoutEventForParentSelector = [];
+var selectorsWithEventForParentSelector = [];
+
+function observerCallBackForParentSelector(m) {
     if (waitProcessForParentSelector == true) {
         return;
     }
     waitProcessForParentSelector = true;
 
-    var selectors = document.querySelectorAll("ma-parent-selector:not([event])");
+    var funcCheckNewSelectors = function () {
+        if (m != null && m.addedNodes.length > 0) {
+            for (var addedNodeIndex = 0; addedNodeIndex < m.addedNodes.length; addedNodeIndex++) {
+                var addedNode = m.addedNodes[addedNodeIndex];
+
+                // Find selector elem
+                if (addedNode.tagName == "MA-PARENT-SELECTOR") {
+
+                    // If without event
+                    if (addedNode.getAttribute("event") == null) {
+                        selectorsWithoutEventForParentSelector.push(addedNode);
+                    }
+                    // If with event
+                    else {
+                        selectorsWithEventForParentSelector.push(addedNode);
+                    }
+
+                }
+            }
+        }
+
+        if (m != null && m.removedNodes.length > 0) {
+            for (var removedNodeIndex = 0; removedNodeIndex < m.removedNodes.length; removedNodeIndex++) {
+                var removedNode = m.removedNodes[removedNodeIndex];
+
+                // Find selector elem
+                if (removedNode.tagName == "MA-PARENT-SELECTOR") {
+
+                    // If without event
+                    if (removedNode.getAttribute("event") == null) {
+                        var removedIndex = selectorsWithoutEventForParentSelector.indexOf(removedNode);
+                        if (removedIndex > -1) {
+                            // Removed before added classes
+                            var selector = selectorsWithoutEventForParentSelector[removedIndex];
+
+                            var elem = selector.getAttribute("elem");
+                            var addClass = selector.getAttribute("add-class");
+
+                            var elemsDOM = document.querySelectorAll(elem);
+                            for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                elemsDOM[elemIndex].classList.remove(addClass);
+                            }
+
+                            selectorsWithoutEventForParentSelector.splice(removedIndex, 1);
+                        }
+                    }
+                    // If with event
+                    else {
+                        var removedIndex = selectorsWithEventForParentSelector.indexOf(removedNode);
+                        if (removedIndex > -1) {
+                            // Removed before added classes
+                            var eventSelector = selectorsWithoutEventForParentSelector[removedIndex];
+
+                            var elem = eventSelector.getAttribute("elem");
+                            var addClass = eventSelector.getAttribute("add-class");
+
+                            var elemsDOM = document.querySelectorAll(elem);
+                            for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                elemsDOM[elemIndex].classList.remove(addClass);
+                            }
+
+                            selectorsWithEventForParentSelector.splice(removedIndex, 1);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    funcCheckNewSelectors();
+
+    var selectors = selectorsWithoutEventForParentSelector;
     for (var selectorIndex = 0; selectorIndex < selectors.length; selectorIndex++) {
         var selector = selectors[selectorIndex];
 
@@ -36,15 +127,20 @@ observeDOMForParentSelector(document.body, function (m) {
         var elem = selector.getAttribute("elem");
         var addClass = selector.getAttribute("add-class");
 
+        var elemsDOM = document.querySelectorAll(elem);
         if (document.querySelector(search) != null) {
-            document.querySelector(elem).classList.add(addClass);
+            for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                elemsDOM[elemIndex].classList.add(addClass);
+            }
         }
         else {
-            document.querySelector(elem).classList.remove(addClass);
+            for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                elemsDOM[elemIndex].classList.remove(addClass);
+            }
         }
     }
 
-    var eventSelectors = document.querySelectorAll("ma-parent-selector[event]");
+    var eventSelectors = selectorsWithEventForParentSelector;
     for (var eventSelectorIndex = 0; eventSelectorIndex < eventSelectors.length; eventSelectorIndex++) {
         var eventSelector = eventSelectors[eventSelectorIndex];
 
@@ -56,117 +152,179 @@ observeDOMForParentSelector(document.body, function (m) {
 
         // Bind event
         var func = function (eventName, search, elem, addClass) {
-            var searchElemDOM = document.querySelector(search);
-            // Bind default events - BEGIN
-            if (searchElemDOM != null) {
-                if (searchElemDOM.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                    searchElemDOM.PARENT_SELECTOR_EVENTS_LOADED = true;
+            var searchElemsDOM = document.querySelectorAll(search);
 
-                    var funcLoadHover = function (searchElemDOM) {
-                        searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS = [];
-                        searchElemDOM.addEventListener("mousemove", function () {
-                            if (searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER == true) {
-                                return;
-                            }
-                            searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER = true;
+            var funcSearchElem = function (searchElemDOM) {
+                // Bind default events - BEGIN
+                if (searchElemDOM != null) {
+                    if (searchElemDOM.PARENT_SELECTOR_EVENTS_LOADED != true) {
+                        searchElemDOM.PARENT_SELECTOR_EVENTS_LOADED = true;
 
-                            for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.length; i++) {
-                                searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS[i].call(searchElemDOM, true);
-                            }
-                        });
-                        searchElemDOM.addEventListener("mouseleave", function () {
-                            searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER = false;
+                        var funcLoadHover = function (searchElemDOM) {
+                            searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS = [];
+                            searchElemDOM.addEventListener("mousemove", function () {
+                                if (searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER == true) {
+                                    return;
+                                }
+                                searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER = true;
 
-                            for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.length; i++) {
-                                searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS[i].call(searchElemDOM, false);
-                            }
-                        });
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS[i].call(searchElemDOM, true);
+                                }
+                            });
+                            searchElemDOM.addEventListener("mouseleave", function () {
+                                searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER = false;
+
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS[i].call(searchElemDOM, false);
+                                }
+                            });
+                        }
+                        funcLoadHover(searchElemDOM);
+
+                        var funcLoadClick = function (searchElemDOM) {
+                            searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS = [];
+                            searchElemDOM.addEventListener("mousedown", function () {
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS[i].call(searchElemDOM, true);
+                                }
+                            });
+
+                            searchElemDOM.addEventListener("mouseup", function () {
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS[i].call(searchElemDOM, false);
+                                }
+                            });
+                        }
+                        funcLoadClick(searchElemDOM);
+
+                        var funcLoadKeyPress = function (searchElemDOM) {
+                            searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS = [];
+                            searchElemDOM.addEventListener("keydown", function () {
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS[i].call(searchElemDOM, true);
+                                }
+                            });
+
+                            searchElemDOM.addEventListener("keyup", function () {
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS[i].call(searchElemDOM, false);
+                                }
+                            });
+                        }
+                        funcLoadKeyPress(searchElemDOM);
+
+                        var funcLoadFocus = function (searchElemDOM) {
+                            searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS = [];
+                            searchElemDOM.addEventListener("focusin", function () {
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS[i].call(searchElemDOM, true);
+                                }
+                            });
+
+                            searchElemDOM.addEventListener("focusout", function () {
+                                for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS.length; i++) {
+                                    searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS[i].call(searchElemDOM, false);
+                                }
+                            });
+                        }
+                        funcLoadFocus(searchElemDOM);
                     }
-                    funcLoadHover(searchElemDOM);
+                    // Bind default events - END
 
-                    var funcLoadClick = function (searchElemDOM) {
-                        searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS = [];
-                        searchElemDOM.addEventListener("mousedown", function () {
-                            for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.length; i++) {
-                                searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS[i].call(searchElemDOM, true);
-                            }
-                        });
+                    switch (eventName) {
+                        case "hover": {
+                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
+                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
 
-                        searchElemDOM.addEventListener("mouseup", function () {
-                            for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.length; i++) {
-                                searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS[i].call(searchElemDOM, false);
+                                searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.push(function (hover) {
+                                    if (hover == true) {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.add(addClass);
+                                        }
+                                    }
+                                    else {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.remove(addClass);
+                                        }
+                                    }
+                                });
                             }
-                        });
+                        }
+                            break;
+                        case "click": {
+                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
+                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
+
+                                searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.push(function (down) {
+                                    if (down == true) {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.add(addClass);
+                                        }
+                                    }
+                                    else {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.remove(addClass);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                            break;
+                        case "keypress": {
+                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
+                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
+
+                                searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.push(function (down) {
+                                    if (down == true) {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.add(addClass);
+                                        }
+                                    }
+                                    else {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.remove(addClass);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                            break;
+                        case "focus": {
+                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
+                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
+
+                                searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS.push(function (focusin) {
+                                    if (focusin == true) {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.add(addClass);
+                                        }
+                                    }
+                                    else {
+                                        var elemsDOM = document.querySelectorAll(elem);
+                                        for (var elemIndex = 0; elemIndex < elemsDOM.length; elemIndex++) {
+                                            elemsDOM[elemIndex].classList.remove(addClass);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                            break;
+                        default:
+                            break;
                     }
-                    funcLoadClick(searchElemDOM);
-
-                    var funcLoadKeyPress = function (searchElemDOM) {
-                        searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS = [];
-                        searchElemDOM.addEventListener("keydown", function () {
-                            for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.length; i++) {
-                                searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS[i].call(searchElemDOM, true);
-                            }
-                        });
-
-                        searchElemDOM.addEventListener("keyup", function () {
-                            for (var i = 0; i < searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.length; i++) {
-                                searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS[i].call(searchElemDOM, false);
-                            }
-                        });
-                    }
-                    funcLoadKeyPress(searchElemDOM);
                 }
-                // Bind default events - END
+            }
 
-                switch (eventName) {
-                    case "hover": {
-                        if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                            eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
-
-                            searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.push(function (hover) {
-                                if (hover == true) {
-                                    document.querySelector(elem).classList.add(addClass);
-                                }
-                                else {
-                                    document.querySelector(elem).classList.remove(addClass);
-                                }
-                            });
-                        }
-                    }
-                        break;
-                    case "click": {
-                        if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                            eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
-
-                            searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.push(function (down) {
-                                if (down == true) {
-                                    document.querySelector(elem).classList.add(addClass);
-                                }
-                                else {
-                                    document.querySelector(elem).classList.remove(addClass);
-                                }
-                            });
-                        }
-                    }
-                        break;
-                    case "keypress": {
-                        if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                            eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
-
-                            searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.push(function (down) {
-                                if (down == true) {
-                                    document.querySelector(elem).classList.add(addClass);
-                                }
-                                else {
-                                    document.querySelector(elem).classList.remove(addClass);
-                                }
-                            });
-                        }
-                    }
-                        break;
-                    default:
-                        break;
-                }
+            for (var searchElemIndex = 0; searchElemIndex < searchElemsDOM.length; searchElemIndex++) {
+                funcSearchElem(searchElemsDOM[searchElemIndex]);
             }
         }
         func(eventName, search, elem, addClass);
@@ -175,4 +333,17 @@ observeDOMForParentSelector(document.body, function (m) {
     setTimeout(function () {
         waitProcessForParentSelector = false;
     });
-});
+}
+observeDOMForParentSelector(document.body, observerCallBackForParentSelector);
+
+function initForParentSelector() {
+    var selectors = document.querySelectorAll("ma-parent-selector:not([event])");
+    for (var selectorIndex = 0; selectorIndex < selectors.length; selectorIndex++) {
+        selectorsWithoutEventForParentSelector.push(selectors[selectorIndex]);
+    }
+    var eventSelectors = document.querySelectorAll("ma-parent-selector[event]");
+    for (var eventSelectorIndex = 0; eventSelectorIndex < eventSelectors.length; eventSelectorIndex++) {
+        selectorsWithEventForParentSelector.push(eventSelectors[eventSelectorIndex]);
+    }
+}
+initForParentSelector();
