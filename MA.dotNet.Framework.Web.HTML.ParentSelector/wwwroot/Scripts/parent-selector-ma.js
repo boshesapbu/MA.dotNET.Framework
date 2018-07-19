@@ -159,6 +159,7 @@ function observerCallBackForParentSelector(m) {
                 if (searchElemDOM != null) {
                     if (searchElemDOM.PARENT_SELECTOR_EVENTS_LOADED != true) {
                         searchElemDOM.PARENT_SELECTOR_EVENTS_LOADED = true;
+                        searchElemDOM.PARENT_SELECTOR_EVENTS_SELECTOR_ITEMS = [];
 
                         var funcLoadHover = function (searchElemDOM) {
                             searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS = [];
@@ -232,11 +233,11 @@ function observerCallBackForParentSelector(m) {
                     }
                     // Bind default events - END
 
-                    switch (eventName) {
-                        case "hover": {
-                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
+                    if (searchElemDOM.PARENT_SELECTOR_EVENTS_SELECTOR_ITEMS.indexOf(eventSelector) == -1) {
+                        searchElemDOM.PARENT_SELECTOR_EVENTS_SELECTOR_ITEMS.push(eventSelector);
 
+                        switch (eventName) {
+                            case "hover": {
                                 searchElemDOM.PARENT_SELECTOR_MOUSE_HOVER_EVENTS.push(function (hover) {
                                     if (hover == true) {
                                         var elemsDOM = document.querySelectorAll(elem);
@@ -252,12 +253,8 @@ function observerCallBackForParentSelector(m) {
                                     }
                                 });
                             }
-                        }
-                            break;
-                        case "click": {
-                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
-
+                                break;
+                            case "click": {
                                 searchElemDOM.PARENT_SELECTOR_MOUSE_CLICK_EVENTS.push(function (down) {
                                     if (down == true) {
                                         var elemsDOM = document.querySelectorAll(elem);
@@ -273,12 +270,8 @@ function observerCallBackForParentSelector(m) {
                                     }
                                 });
                             }
-                        }
-                            break;
-                        case "keypress": {
-                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
-
+                                break;
+                            case "keypress": {
                                 searchElemDOM.PARENT_SELECTOR_KEY_PRESS_EVENTS.push(function (down) {
                                     if (down == true) {
                                         var elemsDOM = document.querySelectorAll(elem);
@@ -294,12 +287,8 @@ function observerCallBackForParentSelector(m) {
                                     }
                                 });
                             }
-                        }
-                            break;
-                        case "focus": {
-                            if (eventSelector.PARENT_SELECTOR_EVENTS_LOADED != true) {
-                                eventSelector.PARENT_SELECTOR_EVENTS_LOADED = true;
-
+                                break;
+                            case "focus": {
                                 searchElemDOM.PARENT_SELECTOR_FOCUS_EVENTS.push(function (focusin) {
                                     if (focusin == true) {
                                         var elemsDOM = document.querySelectorAll(elem);
@@ -315,10 +304,10 @@ function observerCallBackForParentSelector(m) {
                                     }
                                 });
                             }
+                                break;
+                            default:
+                                break;
                         }
-                            break;
-                        default:
-                            break;
                     }
                 }
             }
