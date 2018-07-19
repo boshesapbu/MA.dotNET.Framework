@@ -97,10 +97,10 @@ namespace MA.dotNet.Framework.Standart.ClassLibrary.Security
                 result.Add(newByteValue);
 
                 sumValue += (short)(queueValue + newByteValue);
-                if (sumValue > byte.MaxValue + (byte.MaxValue / 2))
+                if (sumValue > byte.MaxValue * 2)
                 {
                     sumValue %= 256;
-                    result.Add((byte)sumValue);
+                    result.Add((byte)(255 - sumValue));
                 }
             }
 
@@ -127,7 +127,7 @@ namespace MA.dotNet.Framework.Standart.ClassLibrary.Security
                 result.Add(oldValue);
 
                 sumValue += (short)(oldValue + value);
-                if (sumValue > byte.MaxValue + (byte.MaxValue / 2))
+                if (sumValue > byte.MaxValue * 2)
                 {
                     sumValue %= 256;
                     queueValueIndex++;
