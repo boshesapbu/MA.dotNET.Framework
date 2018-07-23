@@ -25,11 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Standar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Standart.ClassLibrary.SecurityTests", "MA.dotNet.Framework.Standart.ClassLibrary.SecurityTests\MA.dotNet.Framework.Standart.ClassLibrary.SecurityTests.csproj", "{EC45F525-4BEC-4A57-B5CD-CA39DF809C81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator", "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.csproj", "{2B6C6721-B452-42B8-880A-45460BF44B35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator", "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculator.csproj", "{2B6C6721-B452-42B8-880A-45460BF44B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculatorTests", "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculatorTests\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculatorTests.csproj", "{24D3BB3B-2D34-426E-BCD5-CAA4F4C6A127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculatorTests", "MA.dotNet.Framework.Standart.ClassLibrary.BigCalculatorTests\MA.dotNet.Framework.Standart.ClassLibrary.BigCalculatorTests.csproj", "{24D3BB3B-2D34-426E-BCD5-CAA4F4C6A127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNet.Framework.Web.HTML.ParentSelector", "MA.dotNet.Framework.Web.HTML.ParentSelector\MA.dotNet.Framework.Web.HTML.ParentSelector.csproj", "{D341192B-8771-4A85-A953-BD11702FFB74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Web.HTML.ParentSelector", "MA.dotNet.Framework.Web.HTML.ParentSelector\MA.dotNet.Framework.Web.HTML.ParentSelector.csproj", "{D341192B-8771-4A85-A953-BD11702FFB74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standart.ClassLibrary.Logger", "MA.dotNET.Framework.Standart.ClassLibrary.Logger\MA.dotNET.Framework.Standart.ClassLibrary.Logger.csproj", "{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests", "MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests\MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests.csproj", "{9D817483-A71F-46D8-9C24-897FB6B9DE67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{D341192B-8771-4A85-A953-BD11702FFB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D341192B-8771-4A85-A953-BD11702FFB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D341192B-8771-4A85-A953-BD11702FFB74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +85,8 @@ Global
 		{2B6C6721-B452-42B8-880A-45460BF44B35} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 		{24D3BB3B-2D34-426E-BCD5-CAA4F4C6A127} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 		{D341192B-8771-4A85-A953-BD11702FFB74} = {8EA30118-6483-460B-B18E-09C6B1E784E2}
+		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
+		{9D817483-A71F-46D8-9C24-897FB6B9DE67} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43C4C13F-8068-401D-991A-D7F7BBFB357C}
