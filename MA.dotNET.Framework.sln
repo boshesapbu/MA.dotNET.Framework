@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests", "MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests\MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests.csproj", "{9D817483-A71F-46D8-9C24-897FB6B9DE67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNet.Framework.Web.HTML.TextAreaPlus", "MA.dotNet.Framework.Web.HTML.TextAreaPlus\MA.dotNet.Framework.Web.HTML.TextAreaPlus.csproj", "{F8BEC582-FD0C-4190-9604-FFD2E35341F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D817483-A71F-46D8-9C24-897FB6B9DE67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{D341192B-8771-4A85-A953-BD11702FFB74} = {8EA30118-6483-460B-B18E-09C6B1E784E2}
 		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 		{9D817483-A71F-46D8-9C24-897FB6B9DE67} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
+		{F8BEC582-FD0C-4190-9604-FFD2E35341F4} = {8EA30118-6483-460B-B18E-09C6B1E784E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43C4C13F-8068-401D-991A-D7F7BBFB357C}

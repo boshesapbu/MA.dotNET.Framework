@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MA.dotNet.Framework.Web.HTML.TextAreaPlus</title>
+
+    <link rel="stylesheet" href="/Styles/text-area-plus.css" />
+</head>
+<body>
+    <textarea id="textarea-test-object"></textarea>
+
+    <script src="/Scripts/text-area-plus-ma.js"></script>
+    <style>
+        .text-area-plus-row-input-content-before,
+        .text-area-plus-row-input-content-after,
+        .text-area-plus-row-input-content,
+        .text-area-plus-row-input {
+            transition-duration: 0.5s;
+        }
+
+        .abc .text-area-plus-row-input-content-before {
+            border-radius: 0px;
+            background-color: darkblue;
+            width: 50px;
+        }
+
+        .abc .text-area-plus-row-input-content-after {
+            border-radius: 0px;
+            background-color: darkgreen;
+            width: 50px;
+        }
+
+        .abc .text-area-plus-row-input-content {
+            width: calc(100% - 100px);
+        }
+
+        .abc .text-area-plus-row-input {
+            font-weight: bold;
+            color: yellowgreen;
+        }
+
+
+        .dfe .text-area-plus-row-input-content-before {
+            border-radius: 30px;
+            background-color: gray;
+            width: 100px;
+        }
+
+        .dfe .text-area-plus-row-input-content-after {
+            border-radius: 30px;
+            background-color: gray;
+            width: 100px;
+        }
+
+        .dfe .text-area-plus-row-input-content {
+            width: calc(100% - 200px);
+        }
+
+        .dfe .text-area-plus-row-input {
+            font-weight: bold;
+            color: red;
+            background-color: black;
+        }
+    </style>
+    <script>
+        textAreaPlus(document.querySelector("#textarea-test-object"), {
+            change: function (event, rowId) {
+                var textArea = this.querySelector("textarea");
+
+                if (textArea.value == "abc") {
+                    this.classList.add("abc");
+                }
+                else {
+                    this.classList.remove("abc");
+                }
+
+                if (textArea.value == "dfe") {
+                    this.classList.add("dfe");
+                }
+                else {
+                    this.classList.remove("dfe");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
