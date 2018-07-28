@@ -35,7 +35,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests", "MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests\MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests.csproj", "{9D817483-A71F-46D8-9C24-897FB6B9DE67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNet.Framework.Web.HTML.TextAreaPlus", "MA.dotNet.Framework.Web.HTML.TextAreaPlus\MA.dotNet.Framework.Web.HTML.TextAreaPlus.csproj", "{F8BEC582-FD0C-4190-9604-FFD2E35341F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Web.HTML.TextAreaPlus", "MA.dotNet.Framework.Web.HTML.TextAreaPlus\MA.dotNet.Framework.Web.HTML.TextAreaPlus.csproj", "{F8BEC582-FD0C-4190-9604-FFD2E35341F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standart.ClassLibrary.Proxy", "MA.dotNET.Framework.Standart.ClassLibrary.Proxy\MA.dotNET.Framework.Standart.ClassLibrary.Proxy.csproj", "{BBF7E968-CF0D-4830-A016-724B51D1B28F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNET.Framework.Standart.ClassLibrary.ProxyTests", "MA.dotNET.Framework.Standart.ClassLibrary.ProxyTests\MA.dotNET.Framework.Standart.ClassLibrary.ProxyTests.csproj", "{1D1186C3-5EC0-469C-BB1C-20AA9BED1458}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNET.Framework.Standart.ClassLibrary.Proxy.ConsoleApp", "MA.dotNET.Framework.Standart.ClassLibrary.Proxy.ConsoleApp\MA.dotNET.Framework.Standart.ClassLibrary.Proxy.ConsoleApp.csproj", "{333F0D4B-9DD7-47E4-91E6-23F76D209C49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +81,18 @@ Global
 		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8BEC582-FD0C-4190-9604-FFD2E35341F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF7E968-CF0D-4830-A016-724B51D1B28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF7E968-CF0D-4830-A016-724B51D1B28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF7E968-CF0D-4830-A016-724B51D1B28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF7E968-CF0D-4830-A016-724B51D1B28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D1186C3-5EC0-469C-BB1C-20AA9BED1458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D1186C3-5EC0-469C-BB1C-20AA9BED1458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D1186C3-5EC0-469C-BB1C-20AA9BED1458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D1186C3-5EC0-469C-BB1C-20AA9BED1458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{333F0D4B-9DD7-47E4-91E6-23F76D209C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333F0D4B-9DD7-47E4-91E6-23F76D209C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333F0D4B-9DD7-47E4-91E6-23F76D209C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333F0D4B-9DD7-47E4-91E6-23F76D209C49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +112,9 @@ Global
 		{CDAE7E8D-EBCB-4A27-80DF-405A4FE0FF4A} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 		{9D817483-A71F-46D8-9C24-897FB6B9DE67} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 		{F8BEC582-FD0C-4190-9604-FFD2E35341F4} = {8EA30118-6483-460B-B18E-09C6B1E784E2}
+		{BBF7E968-CF0D-4830-A016-724B51D1B28F} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
+		{1D1186C3-5EC0-469C-BB1C-20AA9BED1458} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
+		{333F0D4B-9DD7-47E4-91E6-23F76D209C49} = {4DC63E0A-F881-4D68-9715-EA5CD7FD8844}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43C4C13F-8068-401D-991A-D7F7BBFB357C}
