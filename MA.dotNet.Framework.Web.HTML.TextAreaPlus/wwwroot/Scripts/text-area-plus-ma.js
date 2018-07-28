@@ -63,7 +63,7 @@
         // <textarea class="text-area-plus-row-input">
         var rowInputDOM = document.createElement("textarea");
         rowInputDOM.setAttribute("class", "text-area-plus-row-input");
-        
+
         rowInputDOM.addEventListener("keydown", function (event) {
             // Is enter
             if (event.which == 13) {
@@ -78,6 +78,7 @@
                 focusTextArea.value = subStringFromThisValue;
                 textAreaFocusSetSelectionStart(focusTextArea, 0);
 
+                eventsForTextAreaPlus.change.call(rowDOM, event, rowId);
                 eventsForTextAreaPlus.change.call(newRow, event, newRow.getAttribute("id"));
             }
             // Is backspace
@@ -105,6 +106,7 @@
                         focusTextArea.value += this.value;
                         textAreasFocusAndSetSelectionStart(this, focusTextArea, "set-last-position");
 
+                        eventsForTextAreaPlus.change.call(rowDOM.previousElementSibling, event, rowDOM.previousElementSibling.getAttribute("id"));
                         rowDOM.remove();
                     }
                 }
@@ -128,12 +130,14 @@
 
                     // Exists next element
                     if (rowDOM.nextElementSibling != null) {
+                        event.preventDefault();
                         var nextTextArea = rowDOM.nextElementSibling.querySelector("textarea");
                         var beforeSelectionEnd = this.selectionEnd;
                         this.value += nextTextArea.value;
                         this.setSelectionRange(beforeSelectionEnd, beforeSelectionEnd);
 
                         rowDOM.nextElementSibling.remove();
+                        eventsForTextAreaPlus.change.call(rowDOM, event, rowId);
                     }
                 }
             }
@@ -163,12 +167,28 @@
         });
         var beforeRowInputDOMText = null;
         rowInputDOM.addEventListener("input", function (event) {
+            this.value = this.value.split("\r").join("");
+            var rows = this.value.split("\n");
+            if (rows.length > 1) {
+                this.value = rows[0];
+                for (var i = rows.length - 1; i >= 1; i--) {
+                    var newRow = createRow();
+                    var focusTextArea = newRow.querySelector("textarea");
+                    rowDOM.insertAdjacentElement("afterend", newRow);
+
+                    focusTextArea.value = rows[i];
+                    if (i == rows.length - 1)
+                        textAreaFocusSetSelectionStart(focusTextArea, focusTextArea.value.length);
+                    eventsForTextAreaPlus.change.call(newRow, event, newRow.getAttribute("id"));
+                }
+            }
+
             /*EVENTS BEGIN*/
             if (beforeRowInputDOMText != this.value) {
                 eventsForTextAreaPlus.change.call(rowDOM, event, rowId);
                 beforeRowInputDOMText = this.value;
-            /*EVENTS END*/
             }
+            /*EVENTS END*/
         });
         rowInputContentDOM.appendChild(rowInputDOM);
         // </textarea>
