@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tv.youtube Example</title>
+    <link rel="stylesheet" type="text/css" href="/Styles/tv-youtube.css">
+    <script src="/Scripts/tv-youtube.js"></script>
+
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 900%;
+            width: 100%;
+            background-image:url('/Images/bg.jpg');
+        }
+
+        tv-youtube-layer-content img {
+            width: 100%;
+            height: 100%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <tv-youtube-layer data-id="intro"
+                      data-width="243px"
+                      data-height="512px"
+                      data-border-radius="15px"
+                      data-padding="20px"
+                      data-x="calc(50% - 121.5px - 20px)"
+                      data-y="calc(50% - 256px - 20px)">
+        <tv-youtube-layer-content>
+            <img src="/Images/layerIntro.png" />
+        </tv-youtube-layer-content>
+    </tv-youtube-layer>
+    <tv-youtube-layer data-id="live"
+                      data-width="667px"
+                      data-height="373px"
+                      data-border-radius="3px"
+                      data-padding="10px"
+                      data-x="100px"
+                      data-y="calc(100% + 100px)">
+        <tv-youtube-layer-content>
+            <img src="/Images/layerLive.png" />
+        </tv-youtube-layer-content>
+    </tv-youtube-layer>
+    <tv-youtube-layer data-id="device"
+                      data-width="291px"
+                      data-height="607px"
+                      data-border-radius="15px"
+                      data-padding="20px"
+                      data-x="calc(50% - 145px - 20px)"
+                      data-y="calc(250% - 303.5px - 20px)">
+        <tv-youtube-layer-content>
+            <img src="/Images/layerDevice.png" />
+        </tv-youtube-layer-content>
+    </tv-youtube-layer>
+
+    <tv-youtube-movable-layer>
+        <tv-youtube-movable-layer-content>
+            <tv-youtube-movable-layer-content-sub>
+            </tv-youtube-movable-layer-content-sub>
+        </tv-youtube-movable-layer-content>
+    </tv-youtube-movable-layer>
+    <script>
+        tvYoutube({
+            defaultScrollTopZero: true/*default*/,
+            animationActiveScroll: 250/*default*/
+        });
+    </script>
+</body>
+</html>
