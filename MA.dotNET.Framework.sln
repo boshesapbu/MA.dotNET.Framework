@@ -47,8 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{49
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{26CBAA4E-F5FD-4DF5-8288-832D1F9F8D2B}"
 	ProjectSection(SolutionItems) = preProject
-		DatabaseLogMA.sql = DatabaseLogMA.sql
-		DatabaseLogMA_README.md = DatabaseLogMA_README.md
+		MSSQL_DatabaseLogMA.sql = MSSQL_DatabaseLogMA.sql
+		MSSQL_DatabaseLogMA_README.md = MSSQL_DatabaseLogMA_README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MYSQL", "MYSQL", "{6E48D51C-E79A-4872-8D27-1299832C8E45}"
@@ -57,7 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "POSTGRESQL", "POSTGRESQL", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORACLE", "ORACLE", "{D5F72FA0-40B1-4B32-8E3A-52DC903C2772}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.dotNet.Framework.Web.HTML.YoutubeTvEffect", "MA.dotNet.Framework.Web.HTML.YoutubeTvEffect\MA.dotNet.Framework.Web.HTML.YoutubeTvEffect.csproj", "{09274543-187A-4E83-B9ED-A8208D33EB30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MA.dotNet.Framework.Web.HTML.YoutubeTvEffect", "MA.dotNet.Framework.Web.HTML.YoutubeTvEffect\MA.dotNet.Framework.Web.HTML.YoutubeTvEffect.csproj", "{09274543-187A-4E83-B9ED-A8208D33EB30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
