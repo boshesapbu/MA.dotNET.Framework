@@ -17,8 +17,11 @@ namespace MA.dotNET.Framework.Standart.ClassLibrary.LoggerTests
             // Firstly, we have to remove the log file
             // Because, When we not remove the log file, to be row count bigger 2
             // When executing add, append new rows and not clear before rows
-            if (File.Exists(Path.Combine(localDirectory, "Log" + DateTime.Now.ToString("ddMMyyyy") + ".csv")))
-                File.Delete(Path.Combine(localDirectory, "Log" + DateTime.Now.ToString("ddMMyyyy") + ".csv"));
+            foreach (var file in Directory.GetFiles(localDirectory))
+            {
+                if (Path.GetFileName(file).StartsWith("Log"))
+                    File.Delete(file);
+            }
 
             Log = new LogWriter(new string[]
             {
