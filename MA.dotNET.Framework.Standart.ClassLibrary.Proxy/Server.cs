@@ -47,17 +47,25 @@ namespace MA.dotNET.Framework.Standart.ClassLibrary.Proxy
         #region Methods
         public void Start()
         {
-            this.Listener.Start();
-
-            while (disposed == false)
+            try
             {
-                Client newClient = new Client(this);
-                newClient.start();
+                this.Listener.Start();
 
-                lock (this.clients)
+                while (disposed == false)
                 {
-                    this.clients.Add(newClient);
+                    Client newClient = new Client(this);
+                    newClient.start();
+
+                    lock (this.clients)
+                    {
+                        this.clients.Add(newClient);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                if (this.disposed == false)
+                    throw ex;
             }
         }
 
